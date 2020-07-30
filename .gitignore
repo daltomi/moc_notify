@@ -1,0 +1,3 @@
+moc_notify
+*.o
+version.h
