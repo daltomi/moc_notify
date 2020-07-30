@@ -2,10 +2,10 @@
 *Notifier for 'Music On Console' using libnotify.*
 
 
-<img src="https://git.disroot.org/daltomi/moc_notify/src/branch/master/screenshots/01.png"/>
+<img src="https://git.disroot.org/daltomi/moc_notify/raw/branch/master/screenshots/01.png"/>
 
 
-<img src="https://git.disroot.org/daltomi/moc_notify/src/branch/master/screenshots/02.png"/>
+<img src="https://git.disroot.org/daltomi/moc_notify/raw/branch/master/screenshots/02.png"/>
 
 
 
