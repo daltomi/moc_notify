@@ -81,10 +81,4 @@ MOC_NOTIFY_DELIM="?" /usr/bin/moc_notify &
 from version `2.x`.
 
 
-### Systemd journal
-To follow the program messages.
-```bash
-journalctl -f -t moc_notify
-```
-
 ---
