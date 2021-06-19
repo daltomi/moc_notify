@@ -16,7 +16,7 @@
 * Libraries : **libnotify**
 * Build:  **gcc**, **make**, **pkg-config**
 * External:
-	* Our [onsongchange.sh](https://github.com/daltomi/moc_notify/src/branch/master/scripts/onsongchange.sh) script.
+	* Our [onsongchange.sh](https://github.com/daltomi/moc_notify/blob/master/scripts/onsongchange.sh) script.
 	* Some notifier running: **notify-osd**, **xfce4-notifyd**, **dunst**, etc.
 
 ### Build
@@ -41,7 +41,7 @@ moc_notify [option] &
 
 ### How to use with MOC
 
-1 - Copy the script [onsongchange.sh](https://github.com/daltomi/moc_notify/src/branch/master/scripts/onsongchange.sh) to your MOC directory:
+1 - Copy the script [onsongchange.sh](https://github.com/daltomi/moc_notify/blob/master/scripts/onsongchange.sh) to your MOC directory:
 
 ```bahsh
 cp scripts/onsongchange.sh ~/.moc/
@@ -55,7 +55,7 @@ cp scripts/onsongchange.sh ~/.moc/
 
 3 - Restart MOC.
 
-Please see [onsongchange.sh](https://github.com/daltomi/moc_notify/src/branch/master/scripts/onsongchange.sh)
+Please see [onsongchange.sh](https://github.com/daltomi/moc_notify/blob/master/scripts/onsongchange.sh)
 script to see how to get the cover art.
 
 ---
