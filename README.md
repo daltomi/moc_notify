@@ -63,7 +63,7 @@ cp scripts/onsongchange.sh ~/.moc
 
 chmod +x ~/.moc/onsongchange.sh
 ```
-_Note: If you installed with `make install` you will find the script in `$PREFIX/usr/share/moc_notify`_
+_Note: If you installed with `make install` you will find the script in `$PREFIX/share/moc_notify`_
 
 
 2 - Edit your MOC configuration file: *~/.moc/config*
