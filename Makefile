@@ -6,9 +6,15 @@ ifeq ("$(shell pkg-config --libs libnotify  2> /dev/null)","")
 $(error 'libnotify' NOT FOUND)
 endif
 
+ifeq ("$(shell which install 2> /dev/null)","")
+$(error 'install (coreutils)' NOT FOUND)
+endif
+
 APP := moc_notify
 
 APP_VER := "2.4"
+
+PREFIX ?= /usr
 
 CC ?= gcc
 
@@ -41,6 +47,9 @@ $(APP): $(OBJ)
 	$(CC) -c $< -o src/
 
 .PHONY: release
+
+install:
+	-@install -Dt $(PREFIX)/bin/ -m755 $(APP)
 
 clean:
 	rm  src/*.o src/version.h $(APP)
