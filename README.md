@@ -77,6 +77,17 @@ printf "title @ body \r newline @ icon" > $FIFO
 MOC_NOTIFY_DELIM="?" /usr/bin/moc_notify &
 ```
 
+### How to test (without using MOC)
+
+Make sure `moc_notify` is running, then:
+```
+echo "Artist@Title@audio-x-generic" > /tmp/moc_notify
+```
+and test the script:
+```bash
+~/.moc/onsongchange.sh "Artist" "Title" "Album"
+```
+
 ### inotify
 `moc_notify` see if the `FIFO` file is deleted or moved, for this it uses `inotify`
 from version `2.x`.
