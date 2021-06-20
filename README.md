@@ -45,6 +45,8 @@ moc_notify [option] &
 
 ```bahsh
 cp scripts/onsongchange.sh ~/.moc/
+
+chmod +x ~/.moc/onsongchange.sh
 ```
 
 2 - Edit your MOC configuration file: *~/.moc/config*
@@ -79,5 +81,15 @@ MOC_NOTIFY_DELIM="?" /usr/bin/moc_notify &
 `moc_notify` see if the `FIFO` file is deleted or moved, for this it uses `inotify`
 from version `2.x`.
 
+## Syslog
 
+- Journalctl - systemd
+```bash
+journalctl -f -t moc_notify
+```
+
+- Socklog - runit
+```bash
+sudo tail -f /var/log/socklog/everything/current
+```
 ---
