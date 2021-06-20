@@ -50,6 +50,7 @@ $(APP): $(OBJ)
 
 install:
 	-@install -Dt $(PREFIX)/bin/ -m755 $(APP)
+	-@install -Dt $(PREFIX)/share/moc_notify -m755 scripts/onsongchange.sh
 
 clean:
 	rm  src/*.o src/version.h $(APP)
