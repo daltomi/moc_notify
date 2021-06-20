@@ -58,11 +58,13 @@ moc_notify [option] &
 
 1 - Copy the script [onsongchange.sh](https://github.com/daltomi/moc_notify/blob/master/scripts/onsongchange.sh) to your MOC directory:
 
-```bahsh
-cp scripts/onsongchange.sh ~/.moc/
+```bash
+cp scripts/onsongchange.sh ~/.moc
 
 chmod +x ~/.moc/onsongchange.sh
 ```
+_Note: If you installed with `make install` you will find the script in `$PREFIX/usr/share/moc_notify`_
+
 
 2 - Edit your MOC configuration file: *~/.moc/config*
 ```
@@ -96,7 +98,7 @@ MOC_NOTIFY_DELIM="?" /usr/bin/moc_notify &
 
 Make sure `moc_notify` is running, then:
 ```
-echo "Artist@Title@audio-x-generic" > /tmp/moc_notify
+echo "Artist@Title@audio-x-generic" > $(moc_notify -f)
 ```
 and test the script:
 ```bash
