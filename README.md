@@ -11,6 +11,13 @@
 ### Platform
 * GNU/Linux
 
+### Package - ArchLinux - AUR
+[moc_notify-git](https://aur.archlinux.org/packages/moc_notify-git/)
+
+  * GPG key
+	```bash 
+	gpg --keyserver gozer.rediris.es --recv-keys EA8BDDF776B54DD1
+	```
 
 ### Dependencies
 * Libraries : **libnotify**
@@ -26,6 +33,14 @@ make
 make debug
 ```
 
+### Install
+
+```bash
+make install (default PREFIX=/usr)
+-- or --
+PREFIX=/usr/local make install
+```
+_Note: If you don't install change [this line](https://github.com/daltomi/moc_notify/blob/0b3e2595811322f720365743e14d0119851510a8/scripts/onsongchange.sh#L23) of the `onsongchange.sh` since the script needs `moc_notify` to know the name of the FIFO. To get this name, manually run  `moc_notify -f`_
 
 ### Run
 ```bash
