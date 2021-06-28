@@ -9,37 +9,60 @@
 
 
 ### Platform
+
 * GNU/Linux
+* FreeBSD 13.x
+
 
 ### Package - ArchLinux - AUR
 [moc_notify-git](https://aur.archlinux.org/packages/moc_notify-git/)
 
   * GPG key
-	```bash 
-	gpg --keyserver gozer.rediris.es --recv-keys EA8BDDF776B54DD1
-	```
+    ```bash
+    gpg --keyserver gozer.rediris.es --recv-keys EA8BDDF776B54DD1
+    ```
 
 ### Dependencies
-* Libraries : **libnotify**
-* Build:  **gcc**, **make**, **pkg-config**
-* External:
-	* Our [onsongchange.sh](https://github.com/daltomi/moc_notify/blob/master/scripts/onsongchange.sh) script.
-	* Some notifier running: **notify-osd**, **xfce4-notifyd**, **dunst**, etc.
+* Libraries : **libnotify** **libinotify**
 
-### Build
+* Build:
+    - GNU/Linux: **gcc**, **make**, **pkg-config**
+    - FreeBSD  : **clang**, **gmake** **pkg-config**
+
+* External:
+    * Our [onsongchange.sh](https://github.com/daltomi/moc_notify/blob/master/scripts/onsongchange.sh) script.
+    * Some notifier running: **notify-osd**, **xfce4-notifyd**, **dunst**, etc.
+
+
+### Build GNU/Linux
 ```bash
 make
 -- or --
 make debug
 ```
 
-### Install
+### Build FreeBSD
+```bash
+CC=clang gmake
+-- or --
+CC=clang gmake debug
+```
+
+### Install GNU/Linux
 
 ```bash
-make install (default PREFIX=/usr)
+sudo make install (default PREFIX=/usr)
 -- or --
-PREFIX=/usr/local make install
+sudo PREFIX=/usr/local make install
 ```
+
+### Install FreeBSD
+```bash
+sudo gmake install-freebsd (default PREFIX=/usr)
+-- or --
+sudo PREFIX=/usr/local gmake install-freebsd
+```
+
 _Note: If you don't install change [this line](https://github.com/daltomi/moc_notify/blob/0b3e2595811322f720365743e14d0119851510a8/scripts/onsongchange.sh#L23) of the `onsongchange.sh` since the script needs `moc_notify` to know the name of the FIFO. To get this name, manually run  `moc_notify -f`_
 
 ### Run
