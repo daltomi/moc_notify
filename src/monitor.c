@@ -23,12 +23,15 @@
 
 #include "monitor.h"
 
+#if (defined(__FreeBSD__))
+#define MONITOR_EVENTS (NOTE_RENAME | NOTE_DELETE | NOTE_ATTRIB)
+static struct kevent event;
+#else
 #define MONITOR_EVENTS (IN_MOVE_SELF | IN_DELETE_SELF | IN_ATTRIB)
-
 #define MONITOR_BUF_LEN ((sizeof(struct inotify_event) + NAME_MAX + 1))
+#endif
 
 static volatile int monitor_id = -1;
-
 extern volatile sig_atomic_t signalcaught;
 
 
@@ -43,6 +46,24 @@ static void *monitor_read_events_thread(void *UNUSED)
 {
 	assert(monitor_id != -1);
 
+#if (defined(__FreeBSD__))
+	struct kevent event2;
+
+	for (;;) {
+		errno = 0;
+		
+		/* sleep */
+		int ret = kevent(monitor_id, NULL, 0, &event2, 1, NULL);
+
+		check_if(ret != -1, monitor_error_and_exit(),
+			"kevent: Failed wait: %s.", strerror(errno));
+
+		if (ret > 0) {
+			break;
+		}
+	}
+#else
+
 	char buffer[MONITOR_BUF_LEN] __attribute__((aligned(8))) = {0};
 
 	errno = 0;
@@ -52,6 +73,7 @@ static void *monitor_read_events_thread(void *UNUSED)
 
 	check_if(nread != -1, return (void*)0,
 		"Failed to read inotify event: %s.", strerror(errno));
+#endif
 
 	if (signalcaught == 0)
 		log_error("The file was deleted or moved: %s", SERVER_FIFO);
@@ -88,6 +110,31 @@ void monitor_init()
 	errno = 0;
 
 	if (monitor_id == -1) {
+#if (defined(__FreeBSD__))
+		
+	//	int fd = open(SERVER_FIFO, O_RDONLY);
+	//	
+	//	check_if(fd != -1, monitor_error_and_exit(),
+	//		"Failed open fifo: %s.", strerror(errno));
+	//	
+//		errno = 0;
+		monitor_id = kqueue();
+
+		check_if(monitor_id != -1, monitor_error_and_exit(),
+			"kqueue: Failed. %s.", strerror(errno));
+
+		EV_SET(&event, fifo.fd, EVFILT_VNODE, EV_ADD , MONITOR_EVENTS, 0, 0);
+
+		errno = 0;
+		int ret = kevent(monitor_id, &event, 1 ,NULL, 0, NULL);// (&(struct timespec){0,0}));
+
+		check_if(ret != -1, monitor_error_and_exit(),
+			"kevent: Failed register: %s.", strerror(errno));
+
+		check_if(event.flags && EV_ERROR, monitor_error_and_exit(),
+			"kevent: error event: %s.", strerror(errno));
+    }
+#else
 		monitor_id = inotify_init();
 
 		check_if(monitor_id != -1, monitor_error_and_exit(),
@@ -99,5 +146,6 @@ void monitor_init()
 	check_if(watch_id != -1, monitor_error_and_exit(),
 		"Failed inotify_add_watch: %s", strerror(errno));
 
+#endif
 	monitor_init_read_events();
 }

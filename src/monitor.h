@@ -19,7 +19,12 @@
 
 #pragma once
 
+#if (defined(__FreeBSD__))
+#include <sys/event.h>
+#else
 #include <sys/inotify.h>
+#endif
+
 #include <pthread.h>
 
 #include "fifo.h"

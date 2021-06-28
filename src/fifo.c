@@ -35,7 +35,6 @@ static void make_fifo()
 	check_if(mkfifo(SERVER_FIFO, S_IRUSR | S_IWUSR) != -1, exit(EXIT_FAILURE),
 		"Failed mkfifo %s, error=%s", SERVER_FIFO, strerror(errno));
 
-	monitor_init();
 }
 
 
@@ -46,10 +45,12 @@ void open_fifo()
 
 	errno = 0;
 
-	fifo.fd = open(SERVER_FIFO, O_RDONLY);
+	fifo.fd = open(SERVER_FIFO, O_RDONLY);// | O_NONBLOCK);
 
 	check_if(fifo.fd != -1, goto error_open,
 		"Failed open fifo: %s, error=%s.", SERVER_FIFO, strerror(errno));
+
+	monitor_init();
 
 	errno = 0;
 
