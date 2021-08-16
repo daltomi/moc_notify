@@ -16,7 +16,7 @@
 
   * GPG key
 	```bash 
-	gpg --keyserver gozer.rediris.es --recv-keys EA8BDDF776B54DD1
+	gpg --keyserver gozer.rediris.es --recv B1B08540E74FE8A2
 	```
 
 ### Dependencies
