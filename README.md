@@ -81,7 +81,7 @@ script to see how to get the cover art.
 
 ### Known issues - moc
 
-* The script file does not have the attribute of execution (see `chmod`)
+* The script file does not have the attribute of execution (see `man chmod`)
 
 ```bash
 user.err: mocp: Error when running OnSongChange command ~/.moc/onsongchange.sh : permission denied
