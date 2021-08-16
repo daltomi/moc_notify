@@ -12,15 +12,15 @@ endif
 
 APP := moc_notify
 
-APP_VER := "2.4"
+APP_VER := "2.4.1"
 
 PREFIX ?= /usr
 
 CC ?= gcc
 
-CLIBS := $(shell pkg-config --libs libnotify) -lpthread
+CLIBS := $(shell pkg-config --libs libnotify) -lpthread -Wl,-z,relro,-z,now
 
-CFLAGS := -Wall -std=c99 -D_GNU_SOURCE $(shell pkg-config --cflags libnotify)
+CFLAGS := -Wall -std=c99 -D_FORTIFY_SOURCE=1 -D_GNU_SOURCE $(shell pkg-config --cflags libnotify)
 
 OBJ := $(subst .c,.o,$(wildcard src/*.c))
 
