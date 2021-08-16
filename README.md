@@ -79,6 +79,22 @@ script to see how to get the cover art.
 
 ---
 
+### Known issues - moc
+
+* The script file does not have the attribute of execution (see `chmod`)
+
+```bash
+user.err: mocp: Error when running OnSongChange command ~/.moc/onsongchange.sh : permission denied
+```
+
+* Wrong shell path or name, see `#!/usr/bin/bas`
+
+```bash
+user.err: mocp: Error when running OnSongChange command ~/.moc/onsongchange.sh : The file or directory does not exist
+```
+
+---
+
 ### Extra information
 
 ### FIFO format
