@@ -20,7 +20,7 @@ CC ?= gcc
 
 CLIBS := $(shell pkg-config --libs libnotify) -lpthread -Wl,-z,relro,-z,now
 
-CFLAGS := -Wall -std=c99 -D_FORTIFY_SOURCE=1 -D_GNU_SOURCE $(shell pkg-config --cflags libnotify)
+CFLAGS := -fstack-protector -Wall -std=c99 -D_FORTIFY_SOURCE=1 -D_GNU_SOURCE $(shell pkg-config --cflags libnotify)
 
 OBJ := $(subst .c,.o,$(wildcard src/*.c))
 
