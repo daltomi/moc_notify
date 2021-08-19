@@ -1,0 +1,21 @@
+name: full-check
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install_dependencies
+      run: sudo apt install pkg-config libnotify-dev make coreutils
+    - name: first_build
+      run: |
+           make
+           sudo make install
+    - name: run_program
+      run: |
+           moc_notify -v
+
