@@ -60,7 +60,7 @@ static void add_new_signal(int sig, void (*function)(int))
 
 static void print_help()
 {
-	char const help[] = "\n\nmoc_notify %s\n\n"
+	char const* const help = "\n\nmoc_notify %s\n\n"
 	"Usage: \n"
 	"   -v   - Show the version.\n"
 	"   -f   - Show the name of the fifo file, internaly.\n"
@@ -82,10 +82,10 @@ _Noreturn void options(int argc, char* argv [])
 	while ((opt = getopt(argc, argv, "vfh")) != -1) {
 		switch (opt) {
 		case 'v':
-			fprintf(stdout, "moc_notify %s\n", VERSION);
+			printf("moc_notify %s\n", VERSION);
 			break;
 		case 'f':
-			fprintf(stdout, "%s", SERVER_FIFO);
+			printf("%s", SERVER_FIFO);
 			break;
 		case 'h':
 			print_help();
