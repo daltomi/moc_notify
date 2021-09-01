@@ -11,13 +11,6 @@
 ### Platform
 * GNU/Linux
 
-### Package - ArchLinux - AUR
-[moc_notify-git](https://aur.archlinux.org/packages/moc_notify-git/)
-
-  * GPG key
-	```bash 
-	gpg --keyserver gozer.rediris.es --recv B1B08540E74FE8A2
-	```
 
 ### Dependencies
 * Libraries : **libnotify**
