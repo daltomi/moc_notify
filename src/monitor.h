@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2017, 2019 by Daniel T. Borelli <danieltborelli@gmail.com>
+	Copyright © 2017,2021 by Daniel T. Borelli <danieltborelli@gmail.com>
 
 	This file is part of moc_notify.
 
