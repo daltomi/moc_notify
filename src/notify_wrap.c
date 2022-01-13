@@ -44,13 +44,13 @@ void notify_wrap_show(gchar const *summary,
 
 	gboolean is_ok = notify_notification_show(notify_obj, &err);
 
-	check_if(FALSE != is_ok, goto error_notification_show,
-		"notify_notification_show. It is possible that your notification "
-		"daemon is not running or is suspended.");
-	return;
+	if (is_ok == FALSE) {
+		log_error("notify_notification_show. It is possible that your notification "
+		"daemon is not running or is suspended: %s", err->message);
+		g_error_free(err);
+	}
 
-error_notification_show:
-	g_error_free(err);
+	return;
 
 error_notification_new:
 	notify_wrap_end();

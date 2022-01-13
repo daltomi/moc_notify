@@ -82,11 +82,11 @@ if [ -z "$ARTIST" ] || [ -z "$TITLE" ] || [ -z "$ALBUM" ]; then
 
     SONG_NAME=${FILE##*/}
 
-    printf "Music On Console@$SONG_NAME@$ICON" > "$FIFO"
+    printf "%s" "Music On Console@$SONG_NAME@$ICON" > "$FIFO"
 
 else
 
-    printf "$ARTIST@$TITLE\r$ALBUM@$ICON" > "$FIFO"
+    printf "%s" "$ARTIST@$TITLE\r$ALBUM@$ICON" > "$FIFO"
 
 fi
 

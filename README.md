@@ -86,6 +86,12 @@ user.err: mocp: Error when running OnSongChange command ~/.moc/onsongchange.sh :
 user.err: mocp: Error when running OnSongChange command ~/.moc/onsongchange.sh : The file or directory does not exist
 ```
 
+* Could not connect: Connection refused
+
+```bash
+dbus-launch moc_notify
+```
+
 ---
 
 ### Extra information

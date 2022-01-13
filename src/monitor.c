@@ -39,7 +39,7 @@ static void monitor_error_and_exit()
 
 
 
-static void *monitor_read_events_thread(void *UNUSED)
+static void *monitor_read_events_thread(void *UNUSED __attribute__((unused)))
 {
 	assert(monitor_id != -1);
 

@@ -12,7 +12,7 @@ endif
 
 APP := moc_notify
 
-APP_VER := "2.4.1"
+APP_VER := "2.4.2"
 
 PREFIX ?= /usr
 
@@ -33,7 +33,7 @@ release: CFLAGS+= -O3 -DNDEBUG
 release: CLIBS+= -Wl,-s
 release: version $(APP)
 
-debug: CFLAGS+= -O0 -ggdb -DDEBUG -Wimplicit-fallthrough
+debug: CFLAGS+= -O0 -ggdb -DDEBUG -Wimplicit-fallthrough -Wall -Wextra
 debug: version $(APP)
 
 small: CFLAGS+= -Os -DNDEBUG
