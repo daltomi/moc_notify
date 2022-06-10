@@ -1,5 +1,5 @@
 /*
-	Copyright © 2015,2021 by Daniel T. Borelli <danieltborelli@gmail.com>
+	Copyright © 2015,2022 by Daniel T. Borelli <danieltborelli@gmail.com>
 
 	This file is part of moc_notify.
 
@@ -71,7 +71,8 @@ int notify_wrap_init()
 
 void notify_wrap_end()
 {
-	g_object_unref(G_OBJECT(notify_obj));
+	if (notify_obj)
+		g_object_unref(G_OBJECT(notify_obj));
 	notify_obj = NULL;
 	notify_uninit();
 }

@@ -1,5 +1,5 @@
 /*
-	Copyright © 2015,2021 by Daniel T. Borelli <danieltborelli@gmail.com>
+	Copyright © 2015,2022 by Daniel T. Borelli <danieltborelli@gmail.com>
 
 	This file is part of moc_notify.
 
@@ -129,12 +129,12 @@ static void main_loop()
 		if (title && body && icon) {
 			notify_wrap_show(title, body, icon);
 		} else {
-			char const *const ctitle = title ? "(ok)" : "(nil)" ;
-			char const *const cbody  = body  ? "(ok)" : "(nil)" ;
-			char const *const cicon  = icon  ? "(ok)" : "(nil)" ;
+			if (!title) title = "(nil)";
+			if (!body)  body  = "(nil)";
+			if (!icon)  icon  = "(nil)";
 
 			log_warning("The format from FIFO not match: "
-				    "title=%s, body=%s, icon=%s", ctitle, cbody, cicon);
+				    "title=%s, body=%s, icon=%s", title, body, icon);
 		}
 	}
 }
