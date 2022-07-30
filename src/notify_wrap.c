@@ -35,9 +35,7 @@ void notify_wrap_show(gchar const *summary,
 			" daemon is not running.");
 	}
 
-	GVariant *string = g_variant_new_string(icon);
-
-	notify_notification_set_hint(notify_obj, "image_path", string);
+	notify_notification_set_hint_string(notify_obj, "image_path", icon);
 	notify_notification_update(notify_obj, summary, body, icon);
 
 	GError *err = NULL;
