@@ -12,7 +12,7 @@ endif
 
 APP := moc_notify
 
-APP_VER := "2.4.3"
+APP_VER := "2.5.0"
 
 PREFIX ?= /usr
 

@@ -26,6 +26,7 @@
 
 volatile sig_atomic_t signalcaught = 0;
 
+bool use_syslog = true;
 
 struct fifo_file fifo = {
 	.close = close_fifo,
@@ -64,6 +65,7 @@ static void print_help()
 	"Usage: \n"
 	"   -v   - Show the version.\n"
 	"   -f   - Show the name of the fifo file, internaly.\n"
+	"   -s   - Don't use syslog, use stderr only.\n"
 	"   -h   - Show help.\n\n"
 	"How to kill cleanly:\n\n"
 	"   killall moc_notify\n"
@@ -75,11 +77,12 @@ static void print_help()
 
 
 
-_Noreturn void options(int argc, char* argv [])
+static void options(int argc, char* argv [])
 {
 	int opt = 0;
+	bool terminate = true;
 
-	while ((opt = getopt(argc, argv, "vfh")) != -1) {
+	while ((opt = getopt(argc, argv, "vfhs")) != -1) {
 		switch (opt) {
 		case 'v':
 			printf("moc_notify %s\n", VERSION);
@@ -90,10 +93,15 @@ _Noreturn void options(int argc, char* argv [])
 		case 'h':
 			print_help();
 			break;
+		case 's':
+			use_syslog = false;
+			terminate = false;
+			break;
 		}
 	}
 
-	exit(EXIT_SUCCESS);
+	if (terminate)
+		exit(EXIT_SUCCESS);
 }
 
 

@@ -22,13 +22,22 @@
 #include <stdarg.h>
 #include <syslog.h>
 #include <assert.h>
+#include <stdbool.h>
+
+extern bool use_syslog; /*main.c*/
 
 static void va_log(int option, char const*const format, ...) {
 	assert(format != NULL);
 
 	va_list vl;
 	va_start(vl, format);
-	vsyslog(option, format, vl);
+	if (use_syslog) {
+		vsyslog(option, format, vl);
+	} else {
+		vfprintf(stderr, format, vl);
+		fprintf(stderr, "\n");
+	}
+
 	va_end(vl);
 }
 
